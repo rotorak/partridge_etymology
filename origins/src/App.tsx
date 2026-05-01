@@ -24,6 +24,7 @@ function App() {
 
     (async () => {
       try {
+        console.debug('Running dictionary search', { searchTerm, selectedWord });
         const list = await searchWords(searchTerm, 10);
         setSuggestions(list);
 
@@ -38,6 +39,7 @@ function App() {
           setWordEntry(direct ?? null);
         }
       } catch (err) {
+        console.error('App dictionary effect failed', { searchTerm, selectedWord, err });
         setError(err instanceof Error ? err.message : String(err));
       }
     })();
@@ -57,7 +59,13 @@ function App() {
   const searchAction = (formData: FormData) => {
     const term = formData.get('search');
     const value = term != null ? String(term).trim() : '';
-    if (value) setSelectedWord(value);
+    console.debug('Submit clicked', { value, previousSelectedWord: selectedWord, searchTerm });
+    if (value) {
+      if (value === selectedWord) {
+        console.debug('Submit value matches selectedWord; no state change will occur.');
+      }
+      setSelectedWord(value);
+    }
   };
 
   const handleWordClick = (word: string) => {

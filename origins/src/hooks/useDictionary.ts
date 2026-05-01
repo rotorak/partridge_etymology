@@ -214,7 +214,8 @@ export function useDictionary() {
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlGetWord, [word.toLowerCase()]);
             let entry = rows[0] ? rowToEntry(rows[0]) : undefined;
             return entry;
-        } catch {
+        } catch (err) {
+            console.error('getWord query failed', { word, err });
             return undefined;
         }
     };
@@ -230,7 +231,8 @@ export function useDictionary() {
         try {
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlSearchWords, bindSearch, limit);
             return rows.map(r => r.word);
-        } catch {
+        } catch (err) {
+            console.error('searchWords query failed', { term, limit, bindSearch, err });
             return [];
         }
     };
