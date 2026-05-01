@@ -8,6 +8,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['sqlite-wasm-http'],
   },
+  worker: {
+    format: 'es',
+  },
   server: {
     headers: {
       'Accept-Ranges': 'bytes',
