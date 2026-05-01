@@ -26,6 +26,21 @@ type DictionaryRow = {
     language_tree: string | null;
 };
 
+function logSqliteError(context: string, err: unknown, extra?: Record<string, unknown>) {
+    const e = err as Record<string, unknown> | undefined;
+    const result = (e?.result ?? null) as Record<string, unknown> | null;
+    console.error(context, {
+        ...extra,
+        err,
+        message: e?.message,
+        type: e?.type,
+        resultCode: e?.resultCode,
+        operation: e?.operation,
+        resultMessage: result?.message,
+        result,
+    });
+}
+
 
 export function useDictionary() {
     const [loading, setLoading] = useState(true);
@@ -95,6 +110,30 @@ export function useDictionary() {
                         : null;
 
                 if (dbId != null) {
+                    // Probe DB schema at startup so deployment/runtime issues are visible in logs.
+                    try {
+                        const tables: Array<{ row?: unknown[]; columnNames?: string[]; rowNumber?: number | null }> = [];
+                        await (dbPromiser as (type: 'exec', args: ExecArgs) => Promise<unknown>)('exec', {
+                            sql: "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name LIMIT 20",
+                            callback: (msg) => {
+                                tables.push(msg);
+                            },
+                        });
+                        console.debug('Dictionary DB opened; schema probe complete.', {
+                            dbId,
+                            tableRows: tables
+                                .filter((m) => m.row && m.columnNames)
+                                .map((m) => {
+                                    const out: Record<string, unknown> = {};
+                                    m.columnNames!.forEach((col, i) => {
+                                        out[col] = m.row![i];
+                                    });
+                                    return out;
+                                }),
+                        });
+                    } catch (probeErr) {
+                        logSqliteError('Dictionary DB schema probe failed', probeErr, { dbId, remoteDB });
+                    }
                     clearTimeout(timeoutId);
                     dbRef.current = dbPromiser;
                     setLoading(false);
@@ -215,7 +254,7 @@ export function useDictionary() {
             let entry = rows[0] ? rowToEntry(rows[0]) : undefined;
             return entry;
         } catch (err) {
-            console.error('getWord query failed', { word, err });
+            logSqliteError('getWord query failed', err, { word, sql: sqlGetWord });
             return undefined;
         }
     };
@@ -232,7 +271,12 @@ export function useDictionary() {
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlSearchWords, bindSearch, limit);
             return rows.map(r => r.word);
         } catch (err) {
-            console.error('searchWords query failed', { term, limit, bindSearch, err });
+            logSqliteError('searchWords query failed', err, {
+                term,
+                limit,
+                bindSearch,
+                sql: sqlSearchWords,
+            });
             return [];
         }
     };
