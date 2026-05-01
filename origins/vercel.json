@@ -1,0 +1,11 @@
+{
+    "headers": [
+      {
+        "source": "/(.*)\\.db",
+        "headers": [
+          { "key": "Accept-Ranges", "value": "bytes" },
+          { "key": "Access-Control-Expose-Headers", "value": "*" }
+        ]
+      }
+    ]
+  }
