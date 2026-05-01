@@ -1,0 +1,1454 @@
+[
+  {
+    "abbr": "IE",
+    "full": "Indo-European",
+    "family": "Indo-European",
+    "children": [
+      {
+        "abbr": "PL",
+        "full": "Proto-Latin",
+        "family": "Italic",
+        "children": [
+          {
+            "abbr": "OL",
+            "full": "Old Latin",
+            "family": "Italic",
+            "children": [
+              {
+                "abbr": "L",
+                "full": "Latin",
+                "family": "Italic",
+                "children": [
+                  {
+                    "abbr": "NL",
+                    "full": "New Latin",
+                    "family": "Italic"
+                  },
+                  {
+                    "abbr": "LL",
+                    "full": "Late Latin",
+                    "family": "Italic",
+                    "children": [
+                      {
+                        "abbr": "ML",
+                        "full": "Medieval Latin",
+                        "family": "Italic"
+                      },
+                      {
+                        "abbr": "VL",
+                        "full": "Vulgar (or Low) Latin",
+                        "family": "Italic",
+                        "children": [
+                          {
+                            "abbr": "R",
+                            "full": "Romance languages",
+                            "family": "Italic",
+                            "children": [
+                              {
+                                "abbr": "OSp",
+                                "full": "Old Spanish",
+                                "family": "Italic",
+                                "children": [
+                                  {
+                                    "abbr": "Sp",
+                                    "full": "Spanish",
+                                    "family": "Italic",
+                                    "children": [
+                                      {
+                                        "abbr": "ASp",
+                                        "full": "American Spanish",
+                                        "family": "Italic"
+                                      },
+                                      {
+                                        "abbr": "CA",
+                                        "full": "Central American",
+                                        "family": "Italic"
+                                      },
+                                      {
+                                        "abbr": "SAm",
+                                        "full": "South American",
+                                        "family": "Italic"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "abbr": "OIt",
+                                "full": "Old Italian (Middle Ages)",
+                                "family": "Italic",
+                                "children": [
+                                  {
+                                    "abbr": "It",
+                                    "full": "Italian",
+                                    "family": "Italic"
+                                  }
+                                ]
+                              },
+                              {
+                                "abbr": "OProv",
+                                "full": "Old Provencal",
+                                "family": "Italic",
+                                "children": [
+                                  {
+                                    "abbr": "Prov",
+                                    "full": "Provençal",
+                                    "family": "Italic"
+                                  }
+                                ]
+                              },
+                              {
+                                "abbr": "OF",
+                                "full": "Old French",
+                                "family": "Italic",
+                                "children": [
+                                  {
+                                    "abbr": "ONF",
+                                    "full": "Old Northern French",
+                                    "family": "Italic"
+                                  },
+                                  {
+                                    "abbr": "MF",
+                                    "full": "Medieval French",
+                                    "family": "Italic",
+                                    "children": [
+                                      {
+                                        "abbr": "EF",
+                                        "full": "Early Modern French",
+                                        "family": "Italic",
+                                        "children": [
+                                          {
+                                            "abbr": "F",
+                                            "full": "French",
+                                            "family": "Italic",
+                                            "children": [
+                                              {
+                                                "abbr": "AmF",
+                                                "full": "American French",
+                                                "family": "Italic"
+                                              },
+                                              {
+                                                "abbr": "Haiti",
+                                                "full": "Haitian Creole",
+                                                "family": "Italic"
+                                              },
+                                              {
+                                                "abbr": "Louis",
+                                                "full": "Louisiana Creole French",
+                                                "family": "Italic"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "abbr": "AF",
+                                    "full": "Anglo-French",
+                                    "family": "Italic"
+                                  },
+                                  {
+                                    "abbr": "Bourg",
+                                    "full": "Bourguignon",
+                                    "family": "Italic"
+                                  },
+                                  {
+                                    "abbr": "Norma",
+                                    "full": "Norman",
+                                    "family": "Italic"
+                                  },
+                                  {
+                                    "abbr": "Picar",
+                                    "full": "Picard",
+                                    "family": "Italic"
+                                  },
+                                  {
+                                    "abbr": "Wallo",
+                                    "full": "Walloon",
+                                    "family": "Italic"
+                                  }
+                                ]
+                              },
+                              {
+                                "abbr": "Rum",
+                                "full": "Rumanian",
+                                "family": "Italic",
+                                "aliases": [
+                                  "Roman",
+                                  "Rumanian"
+                                ]
+                              },
+                              {
+                                "abbr": "Cat",
+                                "full": "Catalan",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Port",
+                                "full": "Portuguese",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Arago",
+                                "full": "Aragonese",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Aroma",
+                                "full": "Aromanian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Astur",
+                                "full": "Asturian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Dalma",
+                                "full": "Dalmatian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Franc",
+                                "full": "Franco-Provençal",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Friul",
+                                "full": "Friulian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Galic",
+                                "full": "Galician",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Istri",
+                                "full": "Istriot",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Istro",
+                                "full": "Istro-Romanian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Ladin",
+                                "full": "Ladin",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Ligur",
+                                "full": "Ligurian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Lomba",
+                                "full": "Lombard",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Megle",
+                                "full": "Megleno-Romanian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Miran",
+                                "full": "Mirandese",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Neapo",
+                                "full": "Neapolitan",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Occit",
+                                "full": "Occitan",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "OldOc",
+                                "full": "Old Occitan",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "OldPo",
+                                "full": "Old Portuguese",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Piedm",
+                                "full": "Piedmontese",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Roman1",
+                                "full": "Romanian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Roman2",
+                                "full": "Romansch",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Sardi",
+                                "full": "Sardinian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Sicil",
+                                "full": "Sicilian",
+                                "family": "Italic"
+                              },
+                              {
+                                "abbr": "Venet",
+                                "full": "Venetian",
+                                "family": "Italic"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "abbr": "Falis",
+            "full": "Faliscan",
+            "family": "Italic"
+          },
+          {
+            "abbr": "Oscan",
+            "full": "Oscan",
+            "family": "Italic"
+          },
+          {
+            "abbr": "Umbri",
+            "full": "Umbrian",
+            "family": "Italic"
+          }
+        ]
+      },
+      {
+        "abbr": "Hellenic",
+        "full": "Hellenic",
+        "family": "Hellenic",
+        "children": [
+          {
+            "abbr": "PGr",
+            "full": "Primitive Greek",
+            "family": "Hellenic",
+            "children": [
+              {
+                "abbr": "Gr",
+                "full": "Greek",
+                "family": "Hellenic",
+                "children": [
+                  {
+                    "abbr": "Class",
+                    "full": "Classical (Greek, Latin)",
+                    "family": "Hellenic"
+                  },
+                  {
+                    "abbr": "Hell",
+                    "full": "Hellenistic",
+                    "family": "Hellenic"
+                  },
+                  {
+                    "abbr": "LGr",
+                    "full": "Late Greek",
+                    "family": "Hellenic",
+                    "children": [
+                      {
+                        "abbr": "Byz Gr",
+                        "full": "Byzantine Greek",
+                        "family": "Hellenic",
+                        "children": [
+                          {
+                            "abbr": "MGr",
+                            "full": "Medieval Greek",
+                            "family": "Hellenic"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Ponti",
+                    "full": "Pontic Greek",
+                    "family": "Hellenic"
+                  }
+                ]
+              },
+              {
+                "abbr": "AncGre",
+                "full": "Ancient Greek",
+                "family": "Hellenic"
+              },
+              {
+                "abbr": "Mycen",
+                "full": "Mycenaean Greek",
+                "family": "Hellenic"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "abbr": "Indo-Iranian",
+        "full": "Indo-Iranian",
+        "family": "Indo-Iranian",
+        "children": [
+          {
+            "abbr": "Ve",
+            "full": "Vedic",
+            "family": "Indo-Iranian",
+            "children": [
+              {
+                "abbr": "Skt",
+                "full": "Sanskrit",
+                "family": "Indo-Iranian",
+                "children": [
+                  {
+                    "abbr": "Hi",
+                    "full": "Hindi",
+                    "family": "Indo-Iranian",
+                    "children": [
+                      {
+                        "abbr": "Hind",
+                        "full": "Hindustani",
+                        "family": "Indo-Iranian"
+                      },
+                      {
+                        "abbr": "OldHi",
+                        "full": "Old Hindi",
+                        "family": "Indo-Iranian"
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Rom",
+                    "full": "Romany",
+                    "family": "Indo-Iranian",
+                    "children": [
+                      {
+                        "abbr": "Anglo",
+                        "full": "Angloromani",
+                        "family": "Indo-Iranian"
+                      },
+                      {
+                        "abbr": "Calo",
+                        "full": "Caló",
+                        "family": "Indo-Iranian"
+                      },
+                      {
+                        "abbr": "KaloF",
+                        "full": "Kalo Finnish Romani",
+                        "family": "Indo-Iranian"
+                      },
+                      {
+                        "abbr": "Roman",
+                        "full": "Romani",
+                        "family": "Indo-Iranian"
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Benga",
+                    "full": "Bengali",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Gujar",
+                    "full": "Gujarati",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Kashm",
+                    "full": "Kashmiri",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Khowa",
+                    "full": "Khowar",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Konka",
+                    "full": "Konkani",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Lasi",
+                    "full": "Lasi",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Marat",
+                    "full": "Marathi",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Nepal",
+                    "full": "Nepali",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Pali",
+                    "full": "Pali",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Prakr",
+                    "full": "Prakrit",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Punja",
+                    "full": "Punjabi",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Shina",
+                    "full": "Shina",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Sindh",
+                    "full": "Sindhi",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Sinha",
+                    "full": "Sinhalese",
+                    "family": "Indo-Iranian"
+                  },
+                  {
+                    "abbr": "Urdu",
+                    "full": "Urdu",
+                    "family": "Indo-Iranian"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "abbr": "Av",
+            "full": "Avestic (or Zend)",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "OPer",
+            "full": "Old Persian",
+            "family": "Indo-Iranian",
+            "children": [
+              {
+                "abbr": "Per",
+                "full": "Persian",
+                "family": "Indo-Iranian"
+              }
+            ]
+          },
+          {
+            "abbr": "Ashku",
+            "full": "Ashkun",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Avest",
+            "full": "Avestan",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Bactr",
+            "full": "Bactrian",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "CenKur",
+            "full": "Central Kurdish",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Kamka",
+            "full": "Kamkata-viri",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Mazan",
+            "full": "Mazanderani",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Middl",
+            "full": "Middle Persian",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "NorKur",
+            "full": "Northern Kurdish",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Osset",
+            "full": "Ossetian",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Parth",
+            "full": "Parthian",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Pasht",
+            "full": "Pashto",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Tajik",
+            "full": "Tajik",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Yagno",
+            "full": "Yagnobi",
+            "family": "Indo-Iranian"
+          },
+          {
+            "abbr": "Zazak",
+            "full": "Zazaki",
+            "family": "Indo-Iranian"
+          }
+        ]
+      },
+      {
+        "abbr": "PGmc",
+        "full": "Proto Germanic",
+        "family": "Germanic",
+        "children": [
+          {
+            "abbr": "Gmc",
+            "full": "Germanic",
+            "family": "Germanic",
+            "children": [
+              {
+                "abbr": "OGmc",
+                "full": "Old Germanic",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "Go",
+                "full": "Gothic",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "OE",
+                "full": "Old English",
+                "family": "Germanic",
+                "children": [
+                  {
+                    "abbr": "AS",
+                    "full": "Anglo-Saxon",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "ME",
+                    "full": "Middle English",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "EE",
+                        "full": "Early Modern English",
+                        "family": "Germanic",
+                        "children": [
+                          {
+                            "abbr": "E",
+                            "full": "English",
+                            "family": "Germanic",
+                            "children": [
+                              {
+                                "abbr": "BE",
+                                "full": "British English",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "AE",
+                                "full": "American English",
+                                "family": "Germanic",
+                                "children": [
+                                  {
+                                    "abbr": "Am",
+                                    "full": "American (U.S.A.)",
+                                    "family": "Germanic"
+                                  },
+                                  {
+                                    "abbr": "SAE",
+                                    "full": "Standard American English",
+                                    "family": "Germanic"
+                                  }
+                                ]
+                              },
+                              {
+                                "abbr": "Aus",
+                                "full": "Australia",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "NZ",
+                                "full": "New Zealand",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "Can",
+                                "full": "Canadian",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "SAfr",
+                                "full": "South Africa",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "WI",
+                                "full": "West Indian",
+                                "family": "Germanic"
+                              },
+                              {
+                                "abbr": "AIr",
+                                "full": "Anglo-Irish",
+                                "family": "Germanic"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "MSc",
+                    "full": "Middle Scots",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "Sc",
+                        "full": "Scottish",
+                        "family": "Germanic"
+                      },
+                      {
+                        "abbr": "Scots",
+                        "full": "Scots",
+                        "family": "Germanic"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "abbr": "OS",
+                "full": "Old Saxon",
+                "family": "Germanic",
+                "children": [
+                  {
+                    "abbr": "MLG",
+                    "full": "Middle Low German",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "LG",
+                        "full": "Low German",
+                        "family": "Germanic",
+                        "children": [
+                          {
+                            "abbr": "Germa",
+                            "full": "German Low German",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Plaut",
+                            "full": "Plautdietsch",
+                            "family": "Germanic"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "abbr": "OHG",
+                "full": "Old High German",
+                "family": "Germanic",
+                "children": [
+                  {
+                    "abbr": "MHG",
+                    "full": "Middle High German",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "G",
+                        "full": "German",
+                        "family": "Germanic",
+                        "children": [
+                          {
+                            "abbr": "HG",
+                            "full": "High German",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Bavar",
+                            "full": "Bavarian",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Cimbr",
+                            "full": "Cimbrian",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Luxem",
+                            "full": "Luxembourgish",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Moche",
+                            "full": "Mòcheno",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Penns",
+                            "full": "Pennsylvania German",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Vilam",
+                            "full": "Vilamovian",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Volga",
+                            "full": "Volga German",
+                            "family": "Germanic"
+                          },
+                          {
+                            "abbr": "Yiddi",
+                            "full": "Yiddish",
+                            "family": "Germanic"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "abbr": "ON",
+                "full": "Old Norse",
+                "family": "Germanic",
+                "children": [
+                  {
+                    "abbr": "OSw",
+                    "full": "Old Swedish",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "Sw",
+                        "full": "Swedish",
+                        "family": "Germanic"
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Scan",
+                    "full": "Scandinavian",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Da",
+                    "full": "Danish",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Nor",
+                    "full": "Norwegian",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Ice",
+                    "full": "Icelandic",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Faroe",
+                    "full": "Faroese",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Norn",
+                    "full": "Norn",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Norwe1",
+                    "full": "Norwegian Bokmål",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Norwe2",
+                    "full": "Norwegian Nynorsk",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "Westr",
+                    "full": "Westrobothnian",
+                    "family": "Germanic"
+                  }
+                ]
+              },
+              {
+                "abbr": "OFris",
+                "full": "Old Frisian",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "MD",
+                "full": "Medieval Dutch",
+                "family": "Germanic",
+                "children": [
+                  {
+                    "abbr": "ED",
+                    "full": "Early Modern Dutch",
+                    "family": "Germanic"
+                  },
+                  {
+                    "abbr": "D",
+                    "full": "Dutch",
+                    "family": "Germanic",
+                    "children": [
+                      {
+                        "abbr": "Fl",
+                        "full": "Flemish",
+                        "family": "Germanic"
+                      },
+                      {
+                        "abbr": "Afr",
+                        "full": "Afrikaans",
+                        "family": "Germanic"
+                      },
+                      {
+                        "abbr": "Limbu",
+                        "full": "Limburgish",
+                        "family": "Germanic"
+                      },
+                      {
+                        "abbr": "WestF",
+                        "full": "West Flemish",
+                        "family": "Germanic"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "abbr": "Crime",
+                "full": "Crimean Gothic",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "NorthF",
+                "full": "North Frisian",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "OldDu",
+                "full": "Old Dutch",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "Proto",
+                "full": "Proto-Norse",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "Sater",
+                "full": "Saterland Frisian",
+                "family": "Germanic"
+              },
+              {
+                "abbr": "WestF1",
+                "full": "West Frisian",
+                "family": "Germanic"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "abbr": "PC",
+        "full": "Proto-Celtic",
+        "family": "Celtic",
+        "children": [
+          {
+            "abbr": "OC",
+            "full": "Old Celtic",
+            "family": "Celtic",
+            "children": [
+              {
+                "abbr": "C",
+                "full": "Celtic",
+                "family": "Celtic"
+              },
+              {
+                "abbr": "Gaul",
+                "full": "Gaulish",
+                "family": "Celtic"
+              },
+              {
+                "abbr": "OIr",
+                "full": "Old Irish",
+                "family": "Celtic",
+                "children": [
+                  {
+                    "abbr": "MIr",
+                    "full": "Middle Irish",
+                    "family": "Celtic",
+                    "children": [
+                      {
+                        "abbr": "Ir",
+                        "full": "Irish",
+                        "family": "Celtic",
+                        "children": [
+                          {
+                            "abbr": "Ga",
+                            "full": "Gaelic",
+                            "family": "Celtic",
+                            "children": [
+                              {
+                                "abbr": "Scott",
+                                "full": "Scottish Gaelic",
+                                "family": "Celtic"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Primi",
+                    "full": "Primitive Irish",
+                    "family": "Celtic"
+                  }
+                ]
+              },
+              {
+                "abbr": "OW",
+                "full": "Old Welsh",
+                "family": "Celtic",
+                "children": [
+                  {
+                    "abbr": "MW",
+                    "full": "Middle Welsh",
+                    "family": "Celtic",
+                    "children": [
+                      {
+                        "abbr": "W",
+                        "full": "Welsh",
+                        "family": "Celtic"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "abbr": "OBr",
+                "full": "Old Breton",
+                "family": "Celtic",
+                "children": [
+                  {
+                    "abbr": "MBr",
+                    "full": "Medieval Breton",
+                    "family": "Celtic",
+                    "children": [
+                      {
+                        "abbr": "Br",
+                        "full": "Breton",
+                        "family": "Celtic"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "abbr": "Cor",
+            "full": "Cornish",
+            "family": "Celtic"
+          },
+          {
+            "abbr": "Mx",
+            "full": "Manx",
+            "family": "Celtic"
+          }
+        ]
+      },
+      {
+        "abbr": "Sl",
+        "full": "Slavonic",
+        "family": "Slavonic",
+        "children": [
+          {
+            "abbr": "OSl",
+            "full": "Old Slavic",
+            "family": "Slavonic",
+            "children": [
+              {
+                "abbr": "OESl",
+                "full": "Old East Slavic",
+                "family": "Slavonic",
+                "children": [
+                  {
+                    "abbr": "Ru",
+                    "full": "Russian",
+                    "family": "Slavonic"
+                  },
+                  {
+                    "abbr": "Ukrai",
+                    "full": "Ukrainian",
+                    "family": "Slavonic"
+                  },
+                  {
+                    "abbr": "Belar",
+                    "full": "Belarusian",
+                    "family": "Slavonic"
+                  }
+                ]
+              },
+              {
+                "abbr": "SOSl",
+                "full": "South Old Slavic",
+                "family": "Slavonic",
+                "children": [
+                  {
+                    "abbr": "OB",
+                    "full": "Old Bulgarian",
+                    "family": "Slavonic",
+                    "children": [
+                      {
+                        "abbr": "Bulga",
+                        "full": "Bulgarian",
+                        "family": "Slavonic"
+                      }
+                    ]
+                  },
+                  {
+                    "abbr": "Maced",
+                    "full": "Macedonian",
+                    "family": "Slavonic"
+                  }
+                ]
+              },
+              {
+                "abbr": "OldCh",
+                "full": "Old Church Slavonic",
+                "family": "Slavonic"
+              },
+              {
+                "abbr": "OldNo",
+                "full": "Old Novgorodian",
+                "family": "Slavonic"
+              }
+            ]
+          },
+          {
+            "abbr": "Pol",
+            "full": "Polish",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Cz",
+            "full": "Czechoslovak",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Slov",
+            "full": "Slovene",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Cze",
+            "full": "Czech",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Kashu",
+            "full": "Kashubian",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Lower",
+            "full": "Lower Sorbian",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "OldCz",
+            "full": "Old Czech",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "OldPo1",
+            "full": "Old Polish",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Polab",
+            "full": "Polabian",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Siles",
+            "full": "Silesian",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Slova",
+            "full": "Slovak",
+            "family": "Slavonic"
+          },
+          {
+            "abbr": "Upper",
+            "full": "Upper Sorbian",
+            "family": "Slavonic"
+          }
+        ]
+      },
+      {
+        "abbr": "Hit",
+        "full": "Hittite",
+        "family": "Anatolian",
+        "children": [
+          {
+            "abbr": "Luwia",
+            "full": "Luwian",
+            "family": "Anatolian"
+          }
+        ]
+      },
+      {
+        "abbr": "Tokh",
+        "full": "Tokharian",
+        "family": "Tocharian",
+        "children": [
+          {
+            "abbr": "Tocha1",
+            "full": "Tocharian A",
+            "family": "Tocharian"
+          },
+          {
+            "abbr": "Tocha2",
+            "full": "Tocharian B",
+            "family": "Tocharian"
+          }
+        ]
+      },
+      {
+        "abbr": "OP",
+        "full": "Old Prussian",
+        "family": "Baltic"
+      },
+      {
+        "abbr": "Lith",
+        "full": "Lithuanian",
+        "family": "Baltic"
+      },
+      {
+        "abbr": "Lett",
+        "full": "Lettish (Latvian)",
+        "family": "Baltic",
+        "children": [
+          {
+            "abbr": "Latga",
+            "full": "Latgalian",
+            "family": "Baltic"
+          },
+          {
+            "abbr": "Latvi",
+            "full": "Latvian",
+            "family": "Baltic"
+          }
+        ]
+      },
+      {
+        "abbr": "Alb",
+        "full": "Albanian",
+        "family": "Albanian"
+      },
+      {
+        "abbr": "Arm",
+        "full": "Armenian",
+        "family": "Armenian",
+        "children": [
+          {
+            "abbr": "Middl1",
+            "full": "Middle Armenian",
+            "family": "Armenian"
+          },
+          {
+            "abbr": "OldAr",
+            "full": "Old Armenian",
+            "family": "Armenian"
+          }
+        ]
+      },
+      {
+        "abbr": "Lyd",
+        "full": "Lydian",
+        "family": "Indo-European"
+      },
+      {
+        "abbr": "Phryg",
+        "full": "Phrygian",
+        "family": "Indo-European"
+      }
+    ]
+  },
+  {
+    "abbr": "Sem",
+    "full": "Semitic",
+    "family": "Semitic",
+    "children": [
+      {
+        "abbr": "Akk",
+        "full": "Akkadian",
+        "family": "Semitic",
+        "children": [
+          {
+            "abbr": "Ass",
+            "full": "Assyrian",
+            "family": "Semitic"
+          },
+          {
+            "abbr": "Bab",
+            "full": "Babylonian",
+            "family": "Semitic"
+          }
+        ]
+      },
+      {
+        "abbr": "H",
+        "full": "Hebrew",
+        "family": "Semitic"
+      },
+      {
+        "abbr": "Aram",
+        "full": "Aramaic",
+        "family": "Semitic"
+      },
+      {
+        "abbr": "MAr",
+        "full": "Medieval Arabic",
+        "family": "Semitic",
+        "children": [
+          {
+            "abbr": "Ar",
+            "full": "Arabic",
+            "family": "Semitic"
+          },
+          {
+            "abbr": "EgAr",
+            "full": "Egyptian Arabic",
+            "family": "Semitic"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "abbr": "Ham",
+    "full": "Hamitic",
+    "family": "Hamitic",
+    "children": [
+      {
+        "abbr": "Eg",
+        "full": "Egyptian",
+        "family": "Hamitic"
+      }
+    ]
+  },
+  {
+    "abbr": "Amerind",
+    "full": "American Indian",
+    "family": "Amerind",
+    "children": [
+      {
+        "abbr": "Alg",
+        "full": "Algonquin",
+        "family": "Amerind"
+      }
+    ]
+  },
+  {
+    "abbr": "FU",
+    "full": "Finno-Ugric",
+    "family": "Finno-Ugric",
+    "children": [
+      {
+        "abbr": "Fin",
+        "full": "Finnish",
+        "family": "Finno-Ugric"
+      },
+      {
+        "abbr": "Hu",
+        "full": "Hungarian",
+        "family": "Finno-Ugric"
+      },
+      {
+        "abbr": "Livon",
+        "full": "Livonian",
+        "family": "Finno-Ugric"
+      }
+    ]
+  },
+  {
+    "abbr": "Bu",
+    "full": "Bantu",
+    "family": "Bantu"
+  },
+  {
+    "abbr": "Poly",
+    "full": "Polynesian",
+    "family": "Polynesian"
+  },
+  {
+    "abbr": "Tu",
+    "full": "Turkish",
+    "family": "Turkic"
+  },
+  {
+    "abbr": "Ch",
+    "full": "Chinese",
+    "family": "Sinitic"
+  },
+  {
+    "abbr": "J",
+    "full": "Japanese",
+    "family": "Japonic"
+  },
+  {
+    "abbr": "Mal",
+    "full": "Malayan",
+    "family": "Austronesian"
+  },
+  {
+    "abbr": "Jav",
+    "full": "Javanese",
+    "family": "Austronesian"
+  }
+]

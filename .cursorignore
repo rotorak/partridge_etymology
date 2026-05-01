@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Large data files
+*.pdf
+origins/public/final_def*.json
+origins/public/final_def_pt2.json
+pdf_extraction/final_def*.json
+pdf_extraction/final_def_processed.json
+
+
+# Keep config JSON files - exclude specific large ones above
+# If you need to exclude ALL JSON files, use: *.json
