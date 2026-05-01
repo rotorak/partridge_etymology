@@ -104,7 +104,7 @@ export default function DefinitionCard({ wordEntry, containerWidth, containerHei
                     <ExpandAbbreviations text={mainDef} />
                 </div>}
 
-                {headings.map(({ title: titleStr, content: allContent }, index: number) => {
+                {headings.map(({ title: titleStr, content: allContent }) => {
                     const title = titleStr.length > 35 ? titleStr.substring(0, 35) + "..." : titleStr;
                     return (
                         <div key={`${titleStr}::${allContent}`}>
