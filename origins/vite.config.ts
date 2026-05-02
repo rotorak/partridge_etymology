@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  assetsInclude: ['**/*.db'],
   plugins: [react(), tailwindcss()],
   optimizeDeps: {
     exclude: ['sqlite-wasm-http'],
