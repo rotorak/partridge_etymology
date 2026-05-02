@@ -91,7 +91,7 @@ export function useDictionary() {
 
                 if (cancelled) return;
 
-                const remoteDB = 'https://storage.googleapis.com/run-sources-missile-app-v1-us-east1/final_def_linkage.db';
+                const remoteDB = 'https://storage.googleapis.com/etymology_db/final_def_linkage.db';
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
 
