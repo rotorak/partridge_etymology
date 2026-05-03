@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDictionary } from './hooks/useDictionary'
 import { SearchForm } from './searchBar'
 import { useStorageState } from './hooks/useStorageState';
+import { useDebounce } from './hooks/useDebounce.ts';
 import DataGraph from './components/DataGraph.tsx';
 import { type DictionaryEntry } from './types.ts';
 
@@ -13,18 +14,22 @@ function App() {
   const [searchTerm, setSearchTerm] = useStorageState('search', '');
   const [suggestions, setSuggestions] = useState<string[]>([])
 
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
 
   useEffect(() => {
     if (loading || !dbReady) return;
-    if (!searchTerm.trim()) {
+    if (!searchTerm.trim() || debouncedSearchTerm.trim().length < 3) {
       setSuggestions([]);
       if (!selectedWord) setWordEntry(null);
       return;
     }
 
+
+
     (async () => {
       try {
-        const list = await searchWords(searchTerm, 10);
+        const list = await searchWords(debouncedSearchTerm, 10);
         setSuggestions(list);
 
         /* null type protection */
@@ -42,7 +47,7 @@ function App() {
       }
     })();
 
-  }, [loading, dbReady, selectedWord, searchTerm]);
+  }, [loading, dbReady, selectedWord, searchTerm, debouncedSearchTerm]);
 
 
   if (loading) return <div>Loading dictionary...</div>;

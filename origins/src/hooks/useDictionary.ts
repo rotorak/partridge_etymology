@@ -45,10 +45,10 @@ export function useDictionary() {
         (async () => {
             try {
                 const httpBackend = createHttpBackend({
-                    maxPageSize: 16384,
+                    maxPageSize: 1024,
                     timeout: 30000,
                     cacheSize: 4096,
-                    backendType: 'shared',
+                    backendType: 'sync',
                 } as Parameters<typeof createHttpBackend>[0]);
 
                 const dbPromiserRaw = await createSQLiteThread({
@@ -74,7 +74,7 @@ export function useDictionary() {
 
                 if (cancelled) return;
 
-                const remoteDB = 'https://storage.googleapis.com/etymology_db/final_def_linkage.db';
+                const remoteDB = 'final_def_linkage.db';
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
 
