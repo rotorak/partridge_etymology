@@ -45,10 +45,10 @@ export function useDictionary() {
         (async () => {
             try {
                 const httpBackend = createHttpBackend({
-                    maxPageSize: 1024,
-                    timeout: 10000,
+                    maxPageSize: 4096,
+                    timeout: 15000,
                     cacheSize: 4096,
-                    backendType: 'sync', // No SharedArrayBuffer/COOP-COEP; suppresses warnings and uses sync HTTP backend.
+                    backendType: 'sync',
                 } as Parameters<typeof createHttpBackend>[0]);
 
                 const dbPromiserRaw = await createSQLiteThread({
