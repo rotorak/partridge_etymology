@@ -39,3 +39,4 @@ pdf_extraction/debug
 /pdf_extraction/*.json
 /pdf_extraction/*.txt
 /pdf_extraction
+/.vscode
