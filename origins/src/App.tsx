@@ -17,22 +17,31 @@ function App() {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
 
+
   useEffect(() => {
     if (loading || !dbReady) return;
+    if (!searchTerm.trim()) { setSuggestions([]); return; }
     if (!searchTerm.trim() || debouncedSearchTerm.trim().length < 3) {
       setSuggestions([]);
-      if (!selectedWord) setWordEntry(null);
-      return;
     }
-
-
-
     (async () => {
       try {
         const list = await searchWords(debouncedSearchTerm, 10);
         setSuggestions(list);
 
-        /* null type protection */
+      }
+      catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
+      }
+    })();
+
+  }, [loading, dbReady, searchTerm, debouncedSearchTerm, searchWords]);
+
+  useEffect(() => {
+    if (loading || !dbReady) return;
+    if (!selectedWord?.trim()) { setWordEntry(null); return; };
+    (async () => {
+      try {
         if (!selectedWord) return;
 
         const direct = await getWord(selectedWord);
@@ -47,7 +56,7 @@ function App() {
       }
     })();
 
-  }, [loading, dbReady, selectedWord, searchTerm, debouncedSearchTerm]);
+  }, [loading, dbReady, selectedWord, getWord, setError])
 
 
   if (loading) return <div>Loading dictionary...</div>;
