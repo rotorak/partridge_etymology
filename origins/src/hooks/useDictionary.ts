@@ -75,7 +75,7 @@ export function useDictionary() {
                 if (cancelled) return;
 
                 const remoteDB = import.meta.env.PROD
-                ? 'https://storage.googleapis.com/etymology_db/final_def_linkage.db'
+                ? '/final_def_linkage.db'
                 : '/final_def_linkage.db';
                 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
