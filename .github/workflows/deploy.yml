@@ -6,6 +6,12 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
+# This tells GitHub to run all commands inside the 'origins' folder
+defaults:
+  run:
+    working-directory: origins
+
 jobs:
   build_site:
     runs-on: ubuntu-latest
@@ -19,7 +25,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          # Note: path is relative to the REPO ROOT, not the working-directory
+          path: './origins/dist' 
   deploy:
     needs: build_site
     runs-on: ubuntu-latest
