@@ -44,7 +44,7 @@ function App() {
       cancelled = true;
     };
 
-  }, [loading, dbReady, debouncedSearchTerm, searchTerm, searchWords]);
+  }, [loading, dbReady, debouncedSearchTerm, searchTerm]);
 
   useEffect(() => {
     if (loading || !dbReady) return;
