@@ -26,6 +26,21 @@ type DictionaryRow = {
     language_tree: string | null;
 };
 
+function logSqliteError(context: string, err: unknown, extra?: Record<string, unknown>) {
+    const e = err as Record<string, unknown> | undefined;
+    const result = (e?.result ?? null) as Record<string, unknown> | null;
+    console.error(context, {
+        ...extra,
+        err,
+        message: e?.message,
+        type: e?.type,
+        resultCode: e?.resultCode,
+        operation: e?.operation,
+        resultMessage: result?.message,
+        result,
+    });
+}
+
 export function useDictionary() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -55,6 +70,7 @@ export function useDictionary() {
                     http: httpBackend,
                     worker: () => {
                         const w = new Worker(sqliteWorkerUrl, { type: 'module' });
+                        w.onerror = (e) => console.error('Worker bootstrap failed', e);
                         const backend = httpBackend as { type?: string; options?: unknown; createNewChannel?: () => Promise<{ port: MessagePort }> };
                         w.postMessage({ httpChannel: true, httpOptions: backend.options });
                         return w;
@@ -92,6 +108,31 @@ export function useDictionary() {
                         : null;
 
                 if (dbId != null) {
+                    // Probe DB schema at startup so deployment/runtime issues are visible in logs.
+                    try {
+                        const tables: Array<{ row?: unknown[]; columnNames?: string[]; rowNumber?: number | null }> = [];
+                        await (dbPromiser as (type: 'exec', args: ExecArgs) => Promise<unknown>)('exec', {
+                            sql: "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name LIMIT 20",
+                            callback: (msg) => {
+                                tables.push(msg);
+                            },
+                        });
+                        console.debug('Dictionary DB opened; schema probe complete.', {
+                            dbId,
+                            remoteDB,
+                            tableRows: tables
+                                .filter((m) => m.row && m.columnNames)
+                                .map((m) => {
+                                    const out: Record<string, unknown> = {};
+                                    m.columnNames!.forEach((col, i) => {
+                                        out[col] = m.row![i];
+                                    });
+                                    return out;
+                                }),
+                        });
+                    } catch (probeErr) {
+                        logSqliteError('Dictionary DB schema probe failed', probeErr, { dbId, remoteDB });
+                    }
                     clearTimeout(timeoutId);
                     dbRef.current = dbPromiser;
                     setLoading(false);
@@ -103,6 +144,7 @@ export function useDictionary() {
             } catch (err) {
                 if (!cancelled) {
                     clearTimeout(timeoutId);
+                    console.error('Failure to open dictionary database.', err);
                     setError(err instanceof Error ? err.message : String(err));
                     setLoading(false);
                 }
@@ -210,13 +252,14 @@ export function useDictionary() {
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlGetWord, [word.toLowerCase()]);
             let entry = rows[0] ? rowToEntry(rows[0]) : undefined;
             return entry;
-        } catch {
+        } catch (err) {
+            logSqliteError('getWord query failed', err, { word, sql: sqlGetWord });
             return undefined;
         }
     };
 
     const searchWords = async (term: string, limit: number = 10): Promise<string[]> => {
-        const dbToUse = dbRef.current
+        const dbToUse = dbRef.current;
         if (!dbToUse || loading || typeof dbToUse !== 'function') return [];
         const lower = term.toLowerCase();
         const nextPrefix = lower.length > 0
@@ -226,7 +269,13 @@ export function useDictionary() {
         try {
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlSearchWords, bindSearch, limit);
             return rows.map(r => r.word);
-        } catch {
+        } catch (err) {
+            logSqliteError('searchWords query failed', err, {
+                term,
+                limit,
+                bindSearch,
+                sql: sqlSearchWords,
+            });
             return [];
         }
     };
