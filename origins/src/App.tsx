@@ -21,21 +21,30 @@ function App() {
   useEffect(() => {
     if (loading || !dbReady) return;
     if (!searchTerm.trim()) { setSuggestions([]); return; }
-    if (!searchTerm.trim() || debouncedSearchTerm.trim().length < 3) {
+    if (debouncedSearchTerm.trim().length < 3) {
       setSuggestions([]);
+      return;
     }
+
+    let cancelled = false;
+
     (async () => {
       try {
         const list = await searchWords(debouncedSearchTerm, 10);
+        if (cancelled) return;
         setSuggestions(list);
-
       }
       catch (err) {
+        if (cancelled) return;
         setError(err instanceof Error ? err.message : String(err));
       }
     })();
 
-  }, [loading, dbReady, searchTerm, debouncedSearchTerm, searchWords]);
+    return () => {
+      cancelled = true;
+    };
+
+  }, [loading, dbReady, debouncedSearchTerm, searchTerm, searchWords]);
 
   useEffect(() => {
     if (loading || !dbReady) return;
