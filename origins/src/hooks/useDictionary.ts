@@ -35,9 +35,11 @@ export function useDictionary() {
     useEffect(() => {
         let cancelled = false;
         const LOAD_TIMEOUT_MS = 10000;
+        console.debug('[useDictionary] init start');
 
         const timeoutId = window.setTimeout(() => {
             if (cancelled) return;
+            console.error('[useDictionary] load timeout', { timeoutMs: LOAD_TIMEOUT_MS });
             setError('Dictionary load timed out.');
             setLoading(false);
         }, LOAD_TIMEOUT_MS);
@@ -75,12 +77,14 @@ export function useDictionary() {
                 if (cancelled) return;
 
                 const remoteDB = `${import.meta.env.BASE_URL}final_def_linkage.db`
+                console.debug('[useDictionary] opening db', { remoteDB });
                 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
 
                 openResult = await dbPromiser('open', openArgs);
                 if (cancelled) return;
+                console.debug('[useDictionary] open result', { openResult });
 
                 const dbId =
                     openResult != null &&
@@ -92,15 +96,18 @@ export function useDictionary() {
                 if (dbId != null) {
                     clearTimeout(timeoutId);
                     dbRef.current = dbPromiser;
+                    console.debug('[useDictionary] db ready', { dbId });
                     setLoading(false);
                 } else {
                     clearTimeout(timeoutId);
+                    console.error('[useDictionary] open failed: missing dbId', { openResult });
                     setError('Failed to open database: no dbId returned.');
                     setLoading(false);
                 }
             } catch (err) {
                 if (!cancelled) {
                     clearTimeout(timeoutId);
+                    console.error('[useDictionary] init error', { err });
                     setError(err instanceof Error ? err.message : String(err));
                     setLoading(false);
                 }
@@ -159,6 +166,7 @@ export function useDictionary() {
                 (dbInstance as (type: 'exec', args: ExecArgs) => Promise<unknown>)('exec', { sql, bind, callback })
                     .catch((err) => {
                         clearTimeout(timeoutId);
+                        console.error('[useDictionary] exec failed', { sql, bind, err });
                         if (!resolved) {
                             resolved = true;
                             reject(err);
@@ -203,28 +211,40 @@ export function useDictionary() {
 
     const getWord = async (word: string): Promise<DictionaryEntry | undefined> => {
         const dbToUse = dbRef.current;
-        if (!dbToUse || loading || typeof dbToUse !== 'function') return undefined;
+        if (!dbToUse || loading || typeof dbToUse !== 'function') {
+            console.debug('[useDictionary] getWord skipped', { word, loading, hasDb: !!dbToUse });
+            return undefined;
+        }
         try {
+            console.debug('[useDictionary] getWord start', { word });
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlGetWord, [word.toLowerCase()]);
             let entry = rows[0] ? rowToEntry(rows[0]) : undefined;
+            console.debug('[useDictionary] getWord result', { word, rowCount: rows.length, found: !!entry });
             return entry;
-        } catch {
+        } catch (err) {
+            console.error('[useDictionary] getWord failed', { word, err });
             return undefined;
         }
     };
 
     const searchWords = async (term: string, limit: number = 10): Promise<string[]> => {
         const dbToUse = dbRef.current;
-        if (!dbToUse || loading || typeof dbToUse !== 'function') return [];
+        if (!dbToUse || loading || typeof dbToUse !== 'function') {
+            console.debug('[useDictionary] searchWords skipped', { term, limit, loading, hasDb: !!dbToUse });
+            return [];
+        }
         const lower = term.toLowerCase();
         const nextPrefix = lower.length > 0
             ? lower.slice(0, -1) + String.fromCharCode(lower.charCodeAt(lower.length - 1) + 1)
             : '\uFFFF';
         const bindSearch = [lower, nextPrefix, limit];
         try {
+            console.debug('[useDictionary] searchWords start', { term, limit, bindSearch });
             const rows = await execQuery<DictionaryRow>(dbToUse, sqlSearchWords, bindSearch, limit);
+            console.debug('[useDictionary] searchWords result', { term, rowCount: rows.length });
             return rows.map(r => r.word);
-        } catch {
+        } catch (err) {
+            console.error('[useDictionary] searchWords failed', { term, limit, bindSearch, err });
             return [];
         }
     };
