@@ -76,7 +76,7 @@ export function useDictionary() {
 
                 if (cancelled) return;
 
-                const remoteDB = `${import.meta.env.BASE_URL}final_def_linkage.db`
+                const remoteDB = `${import.meta.env.BASE_URL}final_def_linkage.db`.replace(/\/+/g, '/');
                 console.debug('[useDictionary] opening db', { remoteDB });
                 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
