@@ -94,6 +94,39 @@ export function useDictionary() {
                         : null;
 
                 if (dbId != null) {
+                    try {
+                        const pragmaRows = await execQuery<{ page_size?: number }>(
+                            dbPromiser,
+                            'PRAGMA page_size;'
+                        );
+                        const schemaRows = await execQuery<{ name?: string }>(
+                            dbPromiser,
+                            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"
+                        );
+                        console.debug('[useDictionary] startup probe', {
+                            dbId,
+                            remoteDB,
+                            pageSize: pragmaRows[0]?.page_size,
+                            tables: schemaRows.map((r) => r.name).filter(Boolean)
+                        });
+                        try {
+                            const countRows = await execQuery<{ total?: number }>(
+                                dbPromiser,
+                                'SELECT COUNT(*) AS total FROM dictionary;'
+                            );
+                            console.debug('[useDictionary] startup dictionary count', {
+                                dbId,
+                                total: countRows[0]?.total
+                            });
+                        } catch (err) {
+                            console.error('[useDictionary] startup dictionary count failed', {
+                                dbId,
+                                err
+                            });
+                        }
+                    } catch (err) {
+                        console.error('[useDictionary] startup probe failed', { dbId, remoteDB, err });
+                    }
                     clearTimeout(timeoutId);
                     dbRef.current = dbPromiser;
                     console.debug('[useDictionary] db ready', { dbId });
