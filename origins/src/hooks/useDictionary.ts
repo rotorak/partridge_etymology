@@ -53,14 +53,13 @@ export function useDictionary() {
                     timeout: 30000,
                     cacheSize: 0, 
                     backendType: 'sync',
-                    requestMode: 'cors', // Switch to CORS to allow header manipulation
-                    // Add this to prevent compression mangling the byte ranges
+                    requestMode: 'cors',
                     fetchOptions: {
                         headers: {
                             'Accept-Encoding': 'identity'
                         }
                     }
-                } as Parameters<typeof createHttpBackend>[0]);
+                } as any);
 
                 const dbPromiserRaw = await createSQLiteThread({
                     http: httpBackend,
