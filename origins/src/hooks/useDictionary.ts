@@ -51,8 +51,15 @@ export function useDictionary() {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 4096,
                     timeout: 30000,
-                    cacheSize: 4096,
+                    cacheSize: 0, 
                     backendType: 'sync',
+                    requestMode: 'cors', // Switch to CORS to allow header manipulation
+                    // Add this to prevent compression mangling the byte ranges
+                    fetchOptions: {
+                        headers: {
+                            'Accept-Encoding': 'identity'
+                        }
+                    }
                 } as Parameters<typeof createHttpBackend>[0]);
 
                 const dbPromiserRaw = await createSQLiteThread({
@@ -83,7 +90,7 @@ export function useDictionary() {
 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
-
+                
                 openResult = await dbPromiser('open', openArgs);
                 if (cancelled) return;
                 console.debug('[useDictionary] open result', { openResult });
