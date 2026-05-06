@@ -51,7 +51,8 @@ export function useDictionary() {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 4096,
                     timeout: 30000,
-                    cacheSize: 0, 
+                    // REMOVE cacheSize: 0 entirely.
+                    // The library will default to its internal optimal setting.
                     backendType: 'sync',
                     requestMode: 'cors',
                     fetchOptions: {
