@@ -49,7 +49,7 @@ export function useDictionary() {
         (async () => {
             try {
                 const httpBackend = createHttpBackend({
-                    maxPageSize: 4096,
+                    maxPageSize: 1024,
                     timeout: 30000,
                     // REMOVE cacheSize: 0 entirely.
                     // The library will default to its internal optimal setting.
