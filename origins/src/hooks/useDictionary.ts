@@ -50,8 +50,9 @@ export function useDictionary() {
             try {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 1024,
+                    fileLength: 32624640, // The exact value from your stat command
                     timeout: 30000,
-                    backendType: 'sync',
+                    backendType: 'async',
                     requestMode: 'cors',
                     fetchOptions: {
                         headers: {
@@ -88,7 +89,7 @@ export function useDictionary() {
 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
-                
+
                 openResult = await dbPromiser('open', openArgs);
                 if (cancelled) return;
                 console.debug('[useDictionary] open result', { openResult });
