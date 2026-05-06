@@ -51,8 +51,6 @@ export function useDictionary() {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 1024,
                     timeout: 30000,
-                    // REMOVE cacheSize: 0 entirely.
-                    // The library will default to its internal optimal setting.
                     backendType: 'sync',
                     requestMode: 'cors',
                     fetchOptions: {
@@ -85,7 +83,7 @@ export function useDictionary() {
 
                 if (cancelled) return;
 
-                const remoteDB = `${import.meta.env.BASE_URL}final_def_linkage.db`.replace(/\/+/g, '/');
+                const remoteDB = '/partridge_etymology/final_def_linkage.bin'
                 console.debug('[useDictionary] opening db', { remoteDB });
 
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
