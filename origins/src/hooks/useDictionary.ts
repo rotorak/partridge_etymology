@@ -8,6 +8,7 @@ type DbPromiser = Awaited<ReturnType<typeof createSQLiteThread>>;
 type ExecArgs = {
     sql: string;
     bind?: Record<string, unknown> | unknown[];
+    dbId?: string;
     callback: (msg: { row?: unknown[]; columnNames?: string[]; rowNumber?: number | null }) => void;
 };
 
@@ -30,6 +31,7 @@ export function useDictionary() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const dbRef = useRef<DbPromiser | null>(null);
+    const dbIdRef = useRef<string | null>(null);
     const execTailRef = useRef<Promise<void>>(Promise.resolve());
 
     useEffect(() => {
@@ -78,7 +80,7 @@ export function useDictionary() {
 
                 const remoteDB = `${import.meta.env.BASE_URL}final_def_linkage.db`.replace(/\/+/g, '/');
                 console.debug('[useDictionary] opening db', { remoteDB });
-                
+
                 const openArgs = { filename: 'file:' + encodeURI(remoteDB), vfs: 'http' as const };
                 let openResult: unknown;
 
@@ -94,13 +96,16 @@ export function useDictionary() {
                         : null;
 
                 if (dbId != null) {
+                    dbIdRef.current = String(dbId);
                     try {
                         const pragmaRows = await execQuery<{ page_size?: number }>(
                             dbPromiser,
+                            String(dbId),
                             'PRAGMA page_size;'
                         );
                         const schemaRows = await execQuery<{ name?: string }>(
                             dbPromiser,
+                            String(dbId),
                             "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"
                         );
                         console.debug('[useDictionary] startup probe', {
@@ -112,6 +117,7 @@ export function useDictionary() {
                         try {
                             const countRows = await execQuery<{ total?: number }>(
                                 dbPromiser,
+                                String(dbId),
                                 'SELECT COUNT(*) AS total FROM dictionary;'
                             );
                             console.debug('[useDictionary] startup dictionary count', {
@@ -126,6 +132,12 @@ export function useDictionary() {
                         }
                     } catch (err) {
                         console.error('[useDictionary] startup probe failed', { dbId, remoteDB, err });
+                        clearTimeout(timeoutId);
+                        dbRef.current = null;
+                        dbIdRef.current = null;
+                        setError('Failed startup schema probe after opening dictionary.');
+                        setLoading(false);
+                        return;
                     }
                     clearTimeout(timeoutId);
                     dbRef.current = dbPromiser;
@@ -134,6 +146,8 @@ export function useDictionary() {
                 } else {
                     clearTimeout(timeoutId);
                     console.error('[useDictionary] open failed: missing dbId', { openResult });
+                    dbRef.current = null;
+                    dbIdRef.current = null;
                     setError('Failed to open database: no dbId returned.');
                     setLoading(false);
                 }
@@ -141,6 +155,8 @@ export function useDictionary() {
                 if (!cancelled) {
                     clearTimeout(timeoutId);
                     console.error('[useDictionary] init error', { err });
+                    dbRef.current = null;
+                    dbIdRef.current = null;
                     setError(err instanceof Error ? err.message : String(err));
                     setLoading(false);
                 }
@@ -151,11 +167,14 @@ export function useDictionary() {
 
         return () => {
             cancelled = true;
+            dbRef.current = null;
+            dbIdRef.current = null;
         };
     }, []);
 
     function execQuery<T = Record<string, unknown>>(
         dbInstance: DbPromiser,
+        dbId: string,
         sql: string,
         bind?: Record<string, unknown> | unknown[],
         maxRows?: number
@@ -196,10 +215,10 @@ export function useDictionary() {
                         }
                     }
                 };
-                (dbInstance as (type: 'exec', args: ExecArgs) => Promise<unknown>)('exec', { sql, bind, callback })
+                (dbInstance as (type: 'exec', args: ExecArgs) => Promise<unknown>)('exec', { dbId, sql, bind, callback })
                     .catch((err) => {
                         clearTimeout(timeoutId);
-                        console.error('[useDictionary] exec failed', { sql, bind, err });
+                        console.error('[useDictionary] exec failed', { dbId, sql, bind, err });
                         if (!resolved) {
                             resolved = true;
                             reject(err);
@@ -244,13 +263,15 @@ export function useDictionary() {
 
     const getWord = async (word: string): Promise<DictionaryEntry | undefined> => {
         const dbToUse = dbRef.current;
+        const dbId = dbIdRef.current;
+        if (!dbId) return undefined;
         if (!dbToUse || loading || typeof dbToUse !== 'function') {
             console.debug('[useDictionary] getWord skipped', { word, loading, hasDb: !!dbToUse });
             return undefined;
         }
         try {
             console.debug('[useDictionary] getWord start', { word });
-            const rows = await execQuery<DictionaryRow>(dbToUse, sqlGetWord, [word.toLowerCase()]);
+            const rows = await execQuery<DictionaryRow>(dbToUse, dbId, sqlGetWord, [word.toLowerCase()]);
             let entry = rows[0] ? rowToEntry(rows[0]) : undefined;
             console.debug('[useDictionary] getWord result', { word, rowCount: rows.length, found: !!entry });
             return entry;
@@ -262,6 +283,8 @@ export function useDictionary() {
 
     const searchWords = async (term: string, limit: number = 10): Promise<string[]> => {
         const dbToUse = dbRef.current;
+        const dbId = dbIdRef.current;
+        if (!dbId) return [];
         if (!dbToUse || loading || typeof dbToUse !== 'function') {
             console.debug('[useDictionary] searchWords skipped', { term, limit, loading, hasDb: !!dbToUse });
             return [];
@@ -273,7 +296,7 @@ export function useDictionary() {
         const bindSearch = [lower, nextPrefix, limit];
         try {
             console.debug('[useDictionary] searchWords start', { term, limit, bindSearch });
-            const rows = await execQuery<DictionaryRow>(dbToUse, sqlSearchWords, bindSearch, limit);
+            const rows = await execQuery<DictionaryRow>(dbToUse, dbId, sqlSearchWords, bindSearch, limit);
             console.debug('[useDictionary] searchWords result', { term, rowCount: rows.length });
             return rows.map(r => r.word);
         } catch (err) {
@@ -283,7 +306,7 @@ export function useDictionary() {
     };
 
 
-    const dbReady = (typeof dbRef.current === 'function');
+    const dbReady = (typeof dbRef.current === 'function') && typeof dbIdRef.current === 'string';
     return {
         loading,
         setError,
