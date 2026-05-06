@@ -49,7 +49,7 @@ export function useDictionary() {
         (async () => {
             try {
                 const httpBackend = createHttpBackend({
-                    maxPageSize: 1024,
+                    maxPageSize: 4096,
                     timeout: 30000,
                     cacheSize: 4096,
                     backendType: 'sync',
