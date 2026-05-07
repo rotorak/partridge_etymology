@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback} from 'react';
 import { type DictionaryEntry } from '../types';
 import { createSQLiteThread, createHttpBackend } from 'sqlite-wasm-http';
 import sqliteWorkerUrl from '../../node_modules/sqlite-wasm-http/dist/sqlite-worker.js?url';
@@ -50,15 +50,7 @@ export function useDictionary() {
             try {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 1024,
-                    fileLength: 32624640, // The exact value from your stat command
                     timeout: 30000,
-                    backendType: 'async',
-                    requestMode: 'cors',
-                    fetchOptions: {
-                        headers: {
-                            'Accept-Encoding': 'identity'
-                        }
-                    }
                 } as any);
 
                 const dbPromiserRaw = await createSQLiteThread({
@@ -267,7 +259,7 @@ export function useDictionary() {
     }
 
 
-    const getWord = async (word: string): Promise<DictionaryEntry | undefined> => {
+    const getWord = useCallback(async (word: string): Promise<DictionaryEntry | undefined> => {
         const dbToUse = dbRef.current;
         const dbId = dbIdRef.current;
         if (!dbId) return undefined;
@@ -285,9 +277,9 @@ export function useDictionary() {
             console.error('[useDictionary] getWord failed', { word, err });
             return undefined;
         }
-    };
+    }, [loading]);
 
-    const searchWords = async (term: string, limit: number = 10): Promise<string[]> => {
+    const searchWords = useCallback(async (term: string, limit: number = 10): Promise<string[]> => {
         const dbToUse = dbRef.current;
         const dbId = dbIdRef.current;
         if (!dbId) return [];
@@ -309,7 +301,7 @@ export function useDictionary() {
             console.error('[useDictionary] searchWords failed', { term, limit, bindSearch, err });
             return [];
         }
-    };
+    }, [loading]);
 
 
     const dbReady = (typeof dbRef.current === 'function') && typeof dbIdRef.current === 'string';
