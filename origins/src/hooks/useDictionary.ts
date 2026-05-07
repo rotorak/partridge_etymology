@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback} from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { type DictionaryEntry } from '../types';
 import { createSQLiteThread, createHttpBackend } from 'sqlite-wasm-http';
 import sqliteWorkerUrl from '../../node_modules/sqlite-wasm-http/dist/sqlite-worker.js?url';
@@ -51,7 +51,8 @@ export function useDictionary() {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 1024,
                     timeout: 30000,
-                    backendType: 'sync'
+                    backendType: 'sync',
+                    fileLength: 32624640,
                 } as any);
 
                 const dbPromiserRaw = await createSQLiteThread({
