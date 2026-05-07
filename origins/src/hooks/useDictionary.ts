@@ -36,7 +36,7 @@ export function useDictionary() {
 
     useEffect(() => {
         let cancelled = false;
-        const LOAD_TIMEOUT_MS = 10000;
+        const LOAD_TIMEOUT_MS = 60000;
         console.debug('[useDictionary] init start');
 
         const timeoutId = window.setTimeout(() => {
@@ -51,6 +51,7 @@ export function useDictionary() {
                 const httpBackend = createHttpBackend({
                     maxPageSize: 1024,
                     timeout: 30000,
+                    backendType: 'sync'
                 } as any);
 
                 const dbPromiserRaw = await createSQLiteThread({
