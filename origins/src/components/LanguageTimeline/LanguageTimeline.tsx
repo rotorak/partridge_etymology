@@ -90,6 +90,7 @@ return (
             width="100%"
             height={computedHeight}
             viewBox={`0 0 ${targetWidth} ${computedHeight}`}
+            style={{ touchAction: 'pan-y' }}
         >
             <defs>
                 <clipPath id={clipId}>

@@ -27,7 +27,10 @@ export const computeFitTransform = (args: {
     box: DOMRect | SVGRect;
     targetWidth: number;
 }): FitResult => {
-    const MAX_VIEWPORT_H = 800;
+    const MAX_VIEWPORT_H = Math.min(
+        800,
+        Math.max(360, Math.round(window.innerHeight * 0.55))
+      );
     const { box, targetWidth } = args;
 
     const padding = 40;
@@ -62,12 +65,15 @@ export const createTimelineZoom = (args: {
 
 
     const zoom = d3.zoom<SVGSVGElement, unknown>()
-        .filter((event: any) => {
-            if (event.type === 'mousedown') return true;
-            if (event.type === 'wheel') return event.shiftKey || event.metaKey;
-            if (event.type.startsWith('touch')) return true
-            return true;
-        })
+    .filter((event: any) => {
+        if (event.type === 'mousedown') return true;
+        if (event.type === 'wheel') return event.shiftKey || event.metaKey;
+        if (event.type.startsWith('touch')) {
+          const touchCount = event.touches?.length ?? event.sourceEvent?.touches?.length ?? 0;
+          return touchCount >= 2; // only pinch/two-finger
+        }
+        return true;
+      })
         .scaleExtent([ZOOM_K_MIN, ZOOM_K_MAX])
         .extent([[0, 0], [targetWidth, height]])
         .wheelDelta((event: WheelEvent) => {
