@@ -8,6 +8,7 @@ type DefinitionProp = {
     y: number;
     containerWidth?: number;
     containerHeight?: number;
+    selectedWord?: string | null;
 };
 
 type HeadingItem = { title: string; content: string };
@@ -52,11 +53,11 @@ function normalizeHeadings(wordEntry: DictionaryEntry): HeadingItem[] {
     return out;
 }
 
-export default function DefinitionCard({ wordEntry, containerWidth, containerHeight }: DefinitionProp) {
+export default function DefinitionCard({ wordEntry, containerWidth, containerHeight, selectedWord }: DefinitionProp) {
     const scrollRef = useRef<HTMLElement | null>(null);
     useEffect(() => {
         scrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
-      }, [wordEntry.word]);
+    }, [wordEntry.word]);
 
 
     const mainDef = wordEntry.main ?? (typeof wordEntry.definition === 'string' ? wordEntry.definition : undefined);
@@ -88,6 +89,11 @@ export default function DefinitionCard({ wordEntry, containerWidth, containerHei
             }}
             ref={scrollRef}
         >
+            {selectedWord && (
+                <h1 style={{ margin: '0 0 6px', fontSize: 20, fontWeight: 700, color: '#111' }}>
+                    {selectedWord}
+                </h1>
+            )}
             <h2 style={{ margin: '0 0 10px', fontSize: 14, fontWeight: 'bold', color: '#111' }}>
                 Definition
             </h2>

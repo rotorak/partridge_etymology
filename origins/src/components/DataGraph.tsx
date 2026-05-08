@@ -10,10 +10,13 @@ type DataGraphProps = {
     getWord: (word: string) => Promise<DictionaryEntry | undefined>;
     onWordClick: (word: string) => void;
     searchTerm: string;
+    selectedWord?: string | null
 };
 
 
-export default function DataGraph({ wordEntry }: DataGraphProps) {
+
+
+export default function DataGraph({ wordEntry, onWordClick, selectedWord}: DataGraphProps) {
 
     const topContentRef = useRef<SVGGElement>(null);
 
@@ -52,14 +55,16 @@ export default function DataGraph({ wordEntry }: DataGraphProps) {
                     y={branchY}
                     containerWidth={viewportWidth}
                     containerHeight={containerHeight}
+                    selectedWord={selectedWord}
                 />
                 <RelatedWords
                     wordEntry={wordEntry}
                     containerWidth={viewportWidth}
                     containerHeight={containerHeight}
+                    onWordClick={onWordClick}
                 />
             </div >
-            <div className='timeline-section pb-8'>
+            <div className="timeline-section pb-4 md:pb-8">
                 <LanguageTimeline
                     wordEntry={wordEntry}
                     width={viewportWidth * 0.9}

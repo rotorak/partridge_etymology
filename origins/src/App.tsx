@@ -7,6 +7,8 @@ import DataGraph from './components/DataGraph.tsx';
 import { type DictionaryEntry } from './types.ts';
 
 
+
+
 function App() {
   const [wordEntry, setWordEntry] = useState<DictionaryEntry | null>(null);
   const { loading, error, setError, dbReady, searchWords, getWord } = useDictionary();
@@ -120,7 +122,8 @@ function App() {
   };
 
   const handleWordClick = (word: string) => {
-    setSelectedWord(word);
+    const normalized = word.trim();
+    setSelectedWord(normalized);
   };
 
   const handleSuggestionClick = (word: string) => {
@@ -140,10 +143,13 @@ function App() {
         onSuggestionClick={handleSuggestionClick} />
       {wordEntry && (
         <div className="">
-          <DataGraph wordEntry={wordEntry}
+          <DataGraph
+            wordEntry={wordEntry}
             getWord={getWord}
             onWordClick={handleWordClick}
-            searchTerm={searchTerm} />
+            searchTerm={searchTerm}
+            selectedWord={selectedWord}
+          />
         </div>
       )}
 

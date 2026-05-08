@@ -5,18 +5,23 @@ type RelatedWordsProps = {
     wordEntry: DictionaryEntry;
     containerWidth: number;
     containerHeight: number;
+    onWordClick: (word: string) => void;
 };
 
 
-const COLUMNS = 10;
+const MOBILE_BREAKPOINT = 768;
+const MOBILE_COLUMNS = 2;
+const DESKTOP_COLUMNS = 10;
 
 
 
-export default function RelatedWords({ wordEntry, containerWidth, containerHeight }: RelatedWordsProps) {
+export default function RelatedWords({ wordEntry, containerWidth, containerHeight, onWordClick }: RelatedWordsProps) {
     const linksFrom = wordEntry.links_from || [];
     if (linksFrom.length === 0) return null;
     const cardWidth = containerWidth * 0.6;
     const maxCardHeight = Math.min(containerHeight * 0.35, 360);
+    const isMobile = containerWidth < MOBILE_BREAKPOINT;
+    const columns = isMobile ? MOBILE_COLUMNS : DESKTOP_COLUMNS;
     return (
         <section
             className="related-words-card"
@@ -42,7 +47,7 @@ export default function RelatedWords({ wordEntry, containerWidth, containerHeigh
                     padding: 8,
                     borderRadius: 2,
                     display: 'grid',
-                    gridTemplateColumns: `repeat(${COLUMNS}, minmax(0, 1fr))`,
+                    gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
                     columnGap: 10,
                     rowGap: 6,
                     alignContent: 'start',
@@ -51,18 +56,27 @@ export default function RelatedWords({ wordEntry, containerWidth, containerHeigh
                 }}
             >
                 {linksFrom.map((word, i) => (
-                    <div
+                    <button
+                        type="button"
                         key={`${word}-${i}`}
-                        style={{
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            lineHeight: '16px',
-                        }}
+                        onClick={() => onWordClick(word)}
                         title={word}
+                        style={{
+                            textAlign: 'left',
+                            background: 'transparent',
+                            border: 'none',
+                            padding: 0,
+                            margin: 0,
+                            cursor: 'pointer',
+                            whiteSpace: isMobile ? 'normal' : 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: isMobile ? 'clip' : 'ellipsis',
+                            overflowWrap: 'anywhere',
+                            lineHeight: isMobile ? '18px' : '16px',
+                        }}
                     >
                         {word}
-                    </div>
+                    </button>
                 ))}
             </div>
         </section>

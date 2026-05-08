@@ -37,7 +37,9 @@ export default function LanguageTimeline({ wordEntry, width }: Props) {
         const { treeData, minX: minY } = data;
         const rootG = d3.select(contentRef.current);
         rootG.selectAll('*').remove();
-        const startY = -minY + 100;
+        const mobile = window.innerWidth < 768;
+        const topPad = mobile ? 12 : 28;
+        const startY = -minY + topPad;
         const svgSelect = d3.select(svgRef.current);
         const viewportSelect = d3.select(viewPortRef.current);
         const defs = svgSelect.select<SVGDefsElement>('defs');
@@ -55,70 +57,70 @@ export default function LanguageTimeline({ wordEntry, width }: Props) {
             rootG,
             startY,
             data: { treeData, allNodes, topRoots, childRoots, getTopOwner, getChildOwner, getNodeYOffset },
-            config: { defs, nodeWidth: NODE_WIDTH, nodeHeight: NODE_HEIGHT},
+            config: { defs, nodeWidth: NODE_WIDTH, nodeHeight: NODE_HEIGHT },
         });
 
-    const box = contentRef.current?.getBBox()
-    if (!box) return;
+        const box = contentRef.current?.getBBox()
+        if (!box) return;
 
-    const {height, initial, calculatedTargetWidth} = computeFitTransform({box, targetWidth});
+        const { height, initial, calculatedTargetWidth } = computeFitTransform({ box, targetWidth });
 
-    setComputedHeight(height);
+        setComputedHeight(height);
 
-    setTargetWidth(calculatedTargetWidth);
+        setTargetWidth(calculatedTargetWidth);
 
-    const zoom = createTimelineZoom({viewportSelect, box, targetWidth, height});
+        const zoom = createTimelineZoom({ viewportSelect, box, targetWidth, height });
 
-    svgSelect.call(zoom);
-    svgSelect.call(zoom.transform as any, initial);
-
-
-    return () => {cleanupZoom(svgSelect)};
+        svgSelect.call(zoom);
+        svgSelect.call(zoom.transform as any, initial);
 
 
+        return () => { cleanupZoom(svgSelect) };
 
 
-}, [data, width]);
-
-if (!data.treeData) return null;
 
 
-return (
-    <div>
-        <svg
-            ref={svgRef}
-            width="100%"
-            height={computedHeight}
-            viewBox={`0 0 ${targetWidth} ${computedHeight}`}
-            style={{ touchAction: 'pan-y' }}
-        >
-            <defs>
-                <clipPath id={clipId}>
-                    <rect x="0" y="0" width={targetWidth} height={computedHeight} />
-                </clipPath>
-            </defs>
+    }, [data, width]);
 
-            <rect x={0} y={0} width={targetWidth} height={computedHeight}
-                className='fill-slate-50 stroke-slate-200 stroke-[1] rx-2' />
+    if (!data.treeData) return null;
 
-            <g clipPath={`url(#${clipId})`}>
-                <g ref={viewPortRef}>
-                    <g ref={contentRef} />
+
+    return (
+        <div>
+            <svg
+                ref={svgRef}
+                width="100%"
+                height={computedHeight}
+                viewBox={`0 0 ${targetWidth} ${computedHeight}`}
+                style={{ touchAction: 'pan-y' }}
+            >
+                <defs>
+                    <clipPath id={clipId}>
+                        <rect x="0" y="0" width={targetWidth} height={computedHeight} />
+                    </clipPath>
+                </defs>
+
+                <rect x={0} y={0} width={targetWidth} height={computedHeight}
+                    className='fill-slate-50 stroke-slate-200 stroke-[1] rx-2' />
+
+                <g clipPath={`url(#${clipId})`}>
+                    <g ref={viewPortRef}>
+                        <g ref={contentRef} />
+                    </g>
                 </g>
-            </g>
 
-            <g style={{ pointerEvents: 'none' }}>
-                <text
-                    x={width - 12}
-                    y={16}
-                    textAnchor="end"
-                    className="fill-slate-500 text-[12px] font-medium opacity-90"
-                >
-                    <tspan x={targetWidth - 12} dy={0}>Drag to pan</tspan>
-                    <tspan x={targetWidth - 12} dy={14}>Shift+scroll or pinch to zoom</tspan>
-                </text>
-            </g>
-        </svg>
-    </div>
-);
+                <g style={{ pointerEvents: 'none' }}>
+                    <text
+                        x={width - 12}
+                        y={16}
+                        textAnchor="end"
+                        className="fill-slate-500 text-[12px] font-medium opacity-90"
+                    >
+                        <tspan x={targetWidth - 12} dy={0}>Drag to pan</tspan>
+                        <tspan x={targetWidth - 12} dy={14}>Shift+scroll or pinch to zoom</tspan>
+                    </text>
+                </g>
+            </svg>
+        </div>
+    );
 }
